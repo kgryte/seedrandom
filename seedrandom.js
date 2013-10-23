@@ -1,3 +1,10 @@
+//
+//  HISTORY:
+//    - 2013/10/23: Modified. No longer overwrites default Math.random, but appends a new method Math.rand. [KGryte].
+//
+//
+//
+//
 // seedrandom.js version 2.2.
 // Author: David Bau
 // Date: 2013 Jun 15
@@ -157,12 +164,17 @@ math['seedrandom'] = function(seed, use_entropy) {
   // Mix the randomness into accumulated entropy.
   mixkey(tostring(arc4.S), pool);
 
-  // Override Math.random
+
+
+
+
+
+  // Append new method to the Math obj.
 
   // This function returns a random double in [0, 1) that contains
   // randomness in every bit of the mantissa of the IEEE 754 value.
 
-  math['random'] = function() {         // Closure to return a random double:
+  math['rand'] = function() {         // Closure to return a random double:
     var n = arc4.g(chunks),             // Start with a numerator n < 2 ^ 48
         d = startdenom,                 //   and denominator d = 2 ^ 48.
         x = 0;                          //   and no 'extra last byte'.
